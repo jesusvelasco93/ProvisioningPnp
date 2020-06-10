@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ProvisioningPnp": {
+      "commandName": "Project",
+      "commandLineArgs": "--username jesus.velasco@o365babel.onmicrosoft.com --password Temporal16 --otro --urlSite https://o365babel.sharepoint.com/ --templateName prueba"
+    }
+  }
+}
