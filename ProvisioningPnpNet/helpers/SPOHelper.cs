@@ -6,6 +6,7 @@ using Microsoft.SharePoint.Client;
 using OfficeDevPnP.Core.Framework.Provisioning.Connectors;
 using OfficeDevPnP.Core.Framework.Provisioning.Model;
 using OfficeDevPnP.Core.Framework.Provisioning.ObjectHandlers;
+using OfficeDevPnP.Core.Framework.Provisioning.Providers.Xml;
 //using OfficeDevPnP.Core.Framework.Provisioning.Connectors;
 //using OfficeDevPnP.Core.Framework.Provisioning.Providers.Xml;
 
@@ -75,9 +76,22 @@ namespace ProvisioningPnpNet.helpers
         /// <summary>
         /// Export the template to the web and upload files
         /// </summary>
-        public static ProvisioningTemplate ExportTemplate(ClientContext ctx)
+        public static ProvisioningTemplate ExportTemplate(ClientContext ctx, string directory)
         {
-            return new ProvisioningTemplate();
+            ProvisioningTemplateCreationInformation ptci= new ProvisioningTemplateCreationInformation(ctx.Web);
+
+            // Create FileSystemConnector to store a temporary copy of the template
+            ptci.FileConnector = new FileSystemConnector(directory, "");
+            ptci.PersistBrandingFiles = true;
+            ptci.ProgressDelegate = delegate (String message, Int32 progress, Int32 total)
+            {
+                // Only to output progress for console UI
+                LogHelper.writeInfo(string.Format("{0:00}/{1:00} - {2}", progress, total, message));
+            };
+
+            // Execute actual extraction of the template
+            ProvisioningTemplate template = ctx.Web.GetProvisioningTemplate(ptci);
+            return template;
         }
     }
 }

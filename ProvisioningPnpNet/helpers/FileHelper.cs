@@ -39,5 +39,34 @@ namespace ProvisioningPnpNet.helpers
             }
             return template;
         }
+
+        /// <summary>
+        /// Gemerate the path of the directory
+        /// </summary>
+        public static string GeneratePathDirectory(string directory="")
+        {
+            string path = ""; // Check directory if not get current
+            if (string.IsNullOrEmpty(directory))
+            {
+                directory = System.Reflection.Assembly.GetExecutingAssembly().Location;
+            }
+            path = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
+            path = Path.Combine(path, mainFolder, "");
+            FileInfo fileInfo = new FileInfo(path);
+
+            return fileInfo.FullName;
+        }
+
+        /// <summary>
+        /// Save export template to file in fileSystem
+        /// </summary>
+        public static void SaveTemplateFromUrl(ProvisioningTemplate template, string directory, string fileName)
+        {
+            string templateName = !string.IsNullOrEmpty(fileName) ? fileName : "template";
+            // We can serialize this template to save and reuse it
+            // Optional step
+            XMLTemplateProvider provider = new XMLFileSystemTemplateProvider(directory, "");
+            provider.SaveAs(template, string.Concat(templateName, ".xml"));
+        }
     }
 }

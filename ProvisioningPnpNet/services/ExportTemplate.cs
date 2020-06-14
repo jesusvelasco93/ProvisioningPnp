@@ -29,16 +29,24 @@ namespace ProvisioningPnpNet.services
                 {
                     LogHelper.writeSuccess("The connection with SPO is established sucessfully");
 
+                    // Generate directory
+                    string directory = FileHelper.GeneratePathDirectory(options.dirTemplate.value);
+
                     // Import template to SP
-                    LogHelper.writeBasic("Import template to SharePoint Online...");
-                    ProvisioningTemplate templateXML = SPOHelper.ExportTemplate(context);
+                    LogHelper.writeBasic("Export template from SharePoint Online...");
+                    ProvisioningTemplate templateXML = SPOHelper.ExportTemplate(context, directory);
                     if (templateXML != null)
                     {
                         LogHelper.writeSuccess("The proccess of template has finished correctly.");
+                        // Save export data
+                        LogHelper.writeBasic("Export template to file system started...");
+                        FileHelper.SaveTemplateFromUrl(templateXML, directory, options.templateName.value);
+                        LogHelper.writeSuccess("The export of template has finished correctly.");
+
                     }
                     else
                     {
-                        LogHelper.writeError("The template cant be imported to SharePoint, please review the log..");
+                        LogHelper.writeError("The template cant be exported to SharePoint, please review the log..");
                     }
                 }
                 else
