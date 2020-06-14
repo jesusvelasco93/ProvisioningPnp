@@ -19,3 +19,5 @@ The params that can be use, be the following:
  - **urlSite**: url of the site where is to be logged and import/export the template
  - **templateName** *(No required (Only import))*: name of the file, without extension, it must be a XML file and a valid template
  - **dirName** *(No required)*: Path of directory when the file can be found
+
+The directory must to have a folder with the name provision where inside is the template XML
