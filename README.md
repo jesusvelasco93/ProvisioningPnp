@@ -5,10 +5,10 @@ Use this action to review help about the different type of actions:
 > --action help
 
 Use this action to generate a Template to Upload with the following commands:
---action export --username jesus.velasco@tenant.onmicrosoft.com --password *** --urlSite https://tenant.sharepoint.com/
+> --action export --username jesus.velasco@tenant.onmicrosoft.com --password *** --urlSite https://tenant.sharepoint.com/
 
 Use this action to apply a template to site with the following commands:
---action import --username jesus.velasco@tenant.onmicrosoft.com --password *** --urlSite https://tenant.sharepoint.com/ --templateName manifest
+> --action import --username jesus.velasco@tenant.onmicrosoft.com --password *** --urlSite https://tenant.sharepoint.com/ --templateName manifest
 
 
 The params that can be use, be the following:
