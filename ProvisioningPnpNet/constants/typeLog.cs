@@ -2,8 +2,9 @@
 {
     enum typeLog
     {
-        normal=0,
-        space=1,
-        info=2
+        basic=0,
+        normal=1,
+        space=2,
+        info=3
     }
 }

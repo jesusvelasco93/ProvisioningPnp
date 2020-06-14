@@ -206,10 +206,19 @@
     <Compile Include="models\Params.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="services\ExportTemplate.cs" />
+    <Compile Include="services\HelpTemplate.cs" />
+    <Compile Include="services\ImportTemplate.cs" />
+    <Compile Include="services\IService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="LICENSE.md" />
     <None Include="packages.config" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

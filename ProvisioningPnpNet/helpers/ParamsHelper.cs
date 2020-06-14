@@ -15,6 +15,7 @@ namespace ProvisioningPnpNet.helpers
             DefinedParamsModel definedParams = _params.basicParams;
             Dictionary<string, BaseParamModel> dicParams = ParseParamsFromCMD(args);
 
+            definedParams.action = dicParams.ContainsKey("action") ? dicParams["action"] : new BaseParamModel();
             definedParams.username = dicParams.ContainsKey("username") ? dicParams["username"] : new BaseParamModel();
             definedParams.password = dicParams.ContainsKey("password") ? dicParams["password"] : new BaseParamModel();
             definedParams.urlSite = dicParams.ContainsKey("urlSite") ? dicParams["urlSite"] : new BaseParamModel();
@@ -35,11 +36,12 @@ namespace ProvisioningPnpNet.helpers
         }
 
         // Validate necesary params from app
-        public static ValidationParamsModel ValidateParams(DefinedParamsModel options)
+        public static ValidationParamsModel ValidateParams(DefinedParamsModel options, string typeAction)
         {
+            DefinedParamsModel validationParams = AddValidationType(options, typeAction);
             ValidationParamsModel validation = new ValidationParamsModel(true, new String[] { });
             // Go over all defined properties in ParamsModel
-            foreach(PropertyInfo property in options.GetType().GetProperties())
+            foreach(PropertyInfo property in validationParams.GetType().GetProperties())
             {
                 string name = property.Name;
                 // Get object
@@ -67,9 +69,7 @@ namespace ProvisioningPnpNet.helpers
                 if (args[i].IndexOf("--") == 0) {
 
                     string simplyName = args[i].Substring(2);
-                    BaseParamModel _param = new BaseParamModel() { 
-                        validations = SettingsHelper.GetSettingArray(simplyName)
-                    };
+                    BaseParamModel _param = new BaseParamModel() {};
 
                     if (args[i + 1].IndexOf("--") == 0) {
                         _param.value = "true";
@@ -82,6 +82,31 @@ namespace ProvisioningPnpNet.helpers
             }
 
             return dicArgs;
+        }
+    
+        // Add validations to params by the type of action
+        private static DefinedParamsModel AddValidationType(DefinedParamsModel options, string typeAction)
+        {
+            foreach (PropertyInfo property in options.GetType().GetProperties())
+            {
+                string name = string.Concat(typeAction, "_", property.Name);
+                string[] validation = SettingsHelper.GetSettingArray(name);
+                // Get object
+                BaseParamModel properties = (BaseParamModel)property.GetValue(options, null);
+                properties.AddValidation(validation);
+
+                // TODO: Refactor to use reflection
+                // property.SetValue(options, properties, null);
+                
+                switch (property.Name) {
+                    case "username": options.username = properties; break;
+                    case "password": options.password = properties; break;
+                    case "urlSite": options.urlSite = properties; break;
+                    case "templateName": options.templateName = properties; break;
+                    case "dirTemplate": options.dirTemplate = properties; break;
+                }
+            }
+            return options;
         }
     }
 }

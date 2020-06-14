@@ -71,5 +71,13 @@ namespace ProvisioningPnpNet.helpers
             }
             return imported;
         }
+
+        /// <summary>
+        /// Export the template to the web and upload files
+        /// </summary>
+        public static ProvisioningTemplate ExportTemplate(ClientContext ctx)
+        {
+            return new ProvisioningTemplate();
+        }
     }
 }

@@ -22,10 +22,15 @@ namespace ProvisioningPnpNet.helpers
         {
             writeLog(ConsoleColor.Blue, typeLog.info, message);
         }
+        public static void writeConsole(string message)
+        {
+            writeLog(ConsoleColor.DarkGreen, typeLog.normal, message);
+        }
         public static void writeBasic(string message)
         {
-            writeLog(defaultColor, typeLog.normal, message);
+            writeLog(defaultColor, typeLog.basic, message);
         }
+
 
 
         private static void writeLog(ConsoleColor color, typeLog type, string message)
@@ -39,7 +44,8 @@ namespace ProvisioningPnpNet.helpers
             string date = DateTime.UtcNow.ToString("HH:mm:ss");
 
             switch (type) {
-                case typeLog.normal: date = ("(" + date + ") - "); break;
+                case typeLog.normal: date = ("-> "); break;
+                case typeLog.basic: date = ("(" + date + ") - "); break;
                 case typeLog.space: date = (" -> " + date + " - "); break;
                 case typeLog.info: date = ("  --> " + date + " - "); break;
             }

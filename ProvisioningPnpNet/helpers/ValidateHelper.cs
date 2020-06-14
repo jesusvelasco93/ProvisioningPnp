@@ -7,7 +7,7 @@ namespace ProvisioningPnpNet.helpers
         /// <summary>
         /// Validate all fields with the config validation
         /// </summary>
-        public static  string ValidateField(string name, string value, string[] validations)
+        public static string ValidateField(string name, string value, string[] validations)
         {
             string errMsg = "";
 

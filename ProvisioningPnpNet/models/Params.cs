@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
 
 namespace ProvisioningPnpNet.models
 {
@@ -13,6 +15,10 @@ namespace ProvisioningPnpNet.models
             this.value = _value;
             this.validations = _validations;
         }
+        public void AddValidation(string [] _validations)
+        {
+            this.validations = _validations;
+        }
     }
 
 
@@ -23,6 +29,7 @@ namespace ProvisioningPnpNet.models
         public BaseParamModel urlSite { get; set; }
         public BaseParamModel templateName { get; set; }
         public BaseParamModel dirTemplate { get; set; }
+        public BaseParamModel action { get; set; }
     }
 
     public struct ParamsModel
