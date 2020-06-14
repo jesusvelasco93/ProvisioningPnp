@@ -2,7 +2,7 @@
 Provisioning with PNP in C#
 
 Use this action to review help about the different type of actions:
---action help
+> --action help
 
 Use this action to generate a Template to Upload with the following commands:
 --action export --username jesus.velasco@tenant.onmicrosoft.com --password *** --urlSite https://tenant.sharepoint.com/
