@@ -6,9 +6,6 @@ using Microsoft.SharePoint.Client;
 using OfficeDevPnP.Core.Framework.Provisioning.Connectors;
 using OfficeDevPnP.Core.Framework.Provisioning.Model;
 using OfficeDevPnP.Core.Framework.Provisioning.ObjectHandlers;
-using OfficeDevPnP.Core.Framework.Provisioning.Providers.Xml;
-//using OfficeDevPnP.Core.Framework.Provisioning.Connectors;
-//using OfficeDevPnP.Core.Framework.Provisioning.Providers.Xml;
 
 namespace ProvisioningPnpNet.helpers
 {

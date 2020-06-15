@@ -17,4 +17,4 @@ The params that can be use, be the following:
  - password: password of the admin user
  - urlSite: url of the site where is to be logged and import/export the template
  - templateName (No required): name of the file, without extension, it must be a XML file and a valid template
- - dirName (No required): Path of directory when the file can be found
+ - dirPath (No required): Path of directory when the file can be found

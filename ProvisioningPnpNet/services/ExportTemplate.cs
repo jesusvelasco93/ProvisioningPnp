@@ -30,7 +30,7 @@ namespace ProvisioningPnpNet.services
                     LogHelper.writeSuccess("The connection with SPO is established sucessfully");
 
                     // Generate directory
-                    string directory = FileHelper.GeneratePathDirectory(options.dirTemplate.value);
+                    string directory = FileHelper.GeneratePathDirectory(options.dirPath.value);
 
                     // Import template to SP
                     LogHelper.writeBasic("Export template from SharePoint Online...");

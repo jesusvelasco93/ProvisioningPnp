@@ -28,7 +28,7 @@ namespace ProvisioningPnpNet.models
         public BaseParamModel password { get; set; }
         public BaseParamModel urlSite { get; set; }
         public BaseParamModel templateName { get; set; }
-        public BaseParamModel dirTemplate { get; set; }
+        public BaseParamModel dirPath { get; set; }
         public BaseParamModel action { get; set; }
     }
 

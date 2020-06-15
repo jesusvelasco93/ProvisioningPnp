@@ -20,7 +20,7 @@ namespace ProvisioningPnpNet.helpers
             definedParams.password = dicParams.ContainsKey("password") ? dicParams["password"] : new BaseParamModel();
             definedParams.urlSite = dicParams.ContainsKey("urlSite") ? dicParams["urlSite"] : new BaseParamModel();
             definedParams.templateName = dicParams.ContainsKey("templateName") ? dicParams["templateName"] : new BaseParamModel();
-            definedParams.dirTemplate = dicParams.ContainsKey("dirTemplate") ? dicParams["dirTemplate"] : new BaseParamModel();
+            definedParams.dirPath = dicParams.ContainsKey("dirPath") ? dicParams["dirPath"] : new BaseParamModel();
             _params.basicParams = definedParams;
 
             PropertyInfo[] properties = definedParams.GetType().GetProperties();
@@ -103,7 +103,7 @@ namespace ProvisioningPnpNet.helpers
                     case "password": options.password = properties; break;
                     case "urlSite": options.urlSite = properties; break;
                     case "templateName": options.templateName = properties; break;
-                    case "dirTemplate": options.dirTemplate = properties; break;
+                    case "dirPath": options.dirPath = properties; break;
                 }
             }
             return options;

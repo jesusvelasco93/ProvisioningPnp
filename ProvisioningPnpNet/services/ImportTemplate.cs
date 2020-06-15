@@ -22,7 +22,7 @@ namespace ProvisioningPnpNet.services
                 // Load template from file
                 LogHelper.writeBasic("Loading template from file...");
                 string directory = "";
-                ProvisioningTemplate template = FileHelper.ReadTemplateFromUrl(options.templateName.value, out directory, options.dirTemplate.value);
+                ProvisioningTemplate template = FileHelper.ReadTemplateFromUrl(options.templateName.value, out directory, options.dirPath.value);
 
                 if (template != null)
                 {
