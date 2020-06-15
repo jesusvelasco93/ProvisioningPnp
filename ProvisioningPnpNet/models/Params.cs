@@ -30,6 +30,7 @@ namespace ProvisioningPnpNet.models
         public BaseParamModel templateName { get; set; }
         public BaseParamModel dirPath { get; set; }
         public BaseParamModel action { get; set; }
+        public BaseParamModel modernAuth { get; set; }
     }
 
     public struct ParamsModel

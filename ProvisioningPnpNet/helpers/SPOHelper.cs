@@ -3,6 +3,7 @@ using System.Security;
 using System.Threading;
 
 using Microsoft.SharePoint.Client;
+using OfficeDevPnP.Core;
 using OfficeDevPnP.Core.Framework.Provisioning.Connectors;
 using OfficeDevPnP.Core.Framework.Provisioning.Model;
 using OfficeDevPnP.Core.Framework.Provisioning.ObjectHandlers;
@@ -14,13 +15,20 @@ namespace ProvisioningPnpNet.helpers
         /// <summary>
         /// Create the connection with sharepoint with the credentials in params and url
         /// </summary>
-        public static ClientContext Connect(string url, string username, SecureString password)
+        public static ClientContext Connect(string url, string username, SecureString password, bool modernAuth = false)
         {
             ClientContext ctx = null;
             try { 
-                ctx = new ClientContext(url);
-                ctx.Credentials = new SharePointOnlineCredentials(username, password);
-                ctx.RequestTimeout = Timeout.Infinite;
+                if (modernAuth)
+                {
+                    var authenticationManager = new AuthenticationManager();
+                    ctx = authenticationManager.GetWebLoginClientContext(url, null);
+                } else
+                {
+                    ctx = new ClientContext(url);
+                    ctx.Credentials = new SharePointOnlineCredentials(username, password);
+                    ctx.RequestTimeout = Timeout.Infinite;
+                }
 
                 // Just to output the site details
                 Web web = ctx.Web;

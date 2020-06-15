@@ -24,6 +24,7 @@ namespace ProvisioningPnpNet.services
             LogHelper.writeConsole("");
             LogHelper.writeConsole("The params that can be use, be the following:");
             LogHelper.writeConsole(" - action: action to be do it");
+            LogHelper.writeConsole(" - modernAuth: if modernAuth is required to used");
             LogHelper.writeConsole(" - username: login email of the admin user");
             LogHelper.writeConsole(" - password: password of the admin user");
             LogHelper.writeConsole(" - urlSite: url of the site where is to be logged and import/export the template");

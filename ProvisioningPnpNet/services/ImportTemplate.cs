@@ -30,7 +30,9 @@ namespace ProvisioningPnpNet.services
 
                     // Connect with SP
                     LogHelper.writeBasic("Connecting with SharePoint Online...");
-                    ClientContext context = SPOHelper.Connect(options.urlSite.value, options.username.value, passwordSecore);
+                    bool modernAuth = false;
+                    bool.TryParse(options.modernAuth.value, out modernAuth);
+                    ClientContext context = SPOHelper.Connect(options.urlSite.value, options.username.value, passwordSecore, modernAuth);
 
                     if (context != null)
                     {

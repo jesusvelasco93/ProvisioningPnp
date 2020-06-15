@@ -10,11 +10,12 @@ namespace ProvisioningPnpNet.helpers
     {
         private static string mainFolder = SettingsHelper.GetSetting("mainFolder");
         private static string mainExtension = SettingsHelper.GetSetting("mainExtension");
-        
+
         /// <summary>
         /// Load template file in fileSystem
+        /// dirPath: It be use to returned the final directory XML
         /// </summary>
-        public static ProvisioningTemplate ReadTemplateFromUrl(string name, out string dirname, string directory="")
+        public static ProvisioningTemplate ReadTemplateFromUrl(string name, out string dirPath, string directory="")
         {
             ProvisioningTemplate template = null;
             try
@@ -23,18 +24,18 @@ namespace ProvisioningPnpNet.helpers
                 if (string.IsNullOrEmpty(directory)){
                     directory = System.Reflection.Assembly.GetExecutingAssembly().Location;
                 }
-                path = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
+                path = Path.GetDirectoryName(directory);
                 path = Path.Combine(path, mainFolder, string.Concat(name, mainExtension));
                 FileInfo fileInfo = new FileInfo(path);
 
                 XMLTemplateProvider provider = new XMLFileSystemTemplateProvider(fileInfo.DirectoryName, "");
 
                 template = provider.GetTemplate(fileInfo.Name); // Get XML file
-                dirname = fileInfo.DirectoryName; // Use for upload files
+                dirPath = fileInfo.DirectoryName; // Use for upload files
 
             } catch (Exception ex)
             {
-                dirname = "";
+                dirPath = "";
                 LogHelper.writeError(string.Concat("A problem happend when try to read the template from file system. ", ex.Message));
             }
             return template;
@@ -50,7 +51,7 @@ namespace ProvisioningPnpNet.helpers
             {
                 directory = System.Reflection.Assembly.GetExecutingAssembly().Location;
             }
-            path = Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
+            path = Path.GetDirectoryName(directory);
             path = Path.Combine(path, mainFolder, "");
             FileInfo fileInfo = new FileInfo(path);
 

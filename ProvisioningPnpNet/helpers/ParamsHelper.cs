@@ -16,6 +16,7 @@ namespace ProvisioningPnpNet.helpers
             Dictionary<string, BaseParamModel> dicParams = ParseParamsFromCMD(args);
 
             definedParams.action = dicParams.ContainsKey("action") ? dicParams["action"] : new BaseParamModel();
+            definedParams.modernAuth = dicParams.ContainsKey("modernAuth") ? dicParams["modernAuth"] : new BaseParamModel();
             definedParams.username = dicParams.ContainsKey("username") ? dicParams["username"] : new BaseParamModel();
             definedParams.password = dicParams.ContainsKey("password") ? dicParams["password"] : new BaseParamModel();
             definedParams.urlSite = dicParams.ContainsKey("urlSite") ? dicParams["urlSite"] : new BaseParamModel();
@@ -71,7 +72,7 @@ namespace ProvisioningPnpNet.helpers
                     string simplyName = args[i].Substring(2);
                     BaseParamModel _param = new BaseParamModel() {};
 
-                    if (args[i + 1].IndexOf("--") == 0) {
+                    if (args.Length <= i+1 || args[i + 1].IndexOf("--") == 0) {
                         _param.value = "true";
                     } else {
                         _param.value = args[i + 1];
