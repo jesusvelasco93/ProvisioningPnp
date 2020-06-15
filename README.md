@@ -14,6 +14,7 @@ Use this action to apply a template to site with the following commands:
 ## PARAMS
 The params that can be use, be the following:
  - **action**: action to be do it
+ - **modernAuth**: if is required to use modern auth (No need value, only appear)
  - **username**: login email of the admin user
  - **password**: password of the admin user
  - **urlSite**: url of the site where is to be logged and import/export the template
